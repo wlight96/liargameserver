@@ -1,21 +1,21 @@
 import asyncio;
-# À¥ ¼ÒÄÏ ¸ğµâÀ» ¼±¾ğÇÑ´Ù.
+# ì›¹ ì†Œì¼“ ëª¨ë“ˆì„ ì„ ì–¸í•œë‹¤.
 import websockets;
-# Å¬¶óÀÌ¾ğÆ® Á¢¼ÓÀÌ µÇ¸é È£ÃâµÈ´Ù.
+# í´ë¼ì´ì–¸íŠ¸ ì ‘ì†ì´ ë˜ë©´ í˜¸ì¶œëœë‹¤.
 
 async def accept(websocket, path):
     while True:
-        # Å¬¶óÀÌ¾ğÆ®·ÎºÎÅÍ ¸Ş½ÃÁö¸¦ ´ë±âÇÑ´Ù.
+        # í´ë¼ì´ì–¸íŠ¸ë¡œë¶€í„° ë©”ì‹œì§€ë¥¼ ëŒ€ê¸°í•œë‹¤.
         data = await websocket.recv();
         json_data = json.loads(data)
         playername = json_data["player"]
         print(playername)
-        # Å¬¶óÀÎ¾ğÆ®·Î echo¸¦ ºÙ¿©¼­ Àç Àü¼ÛÇÑ´Ù.
+        # í´ë¼ì¸ì–¸íŠ¸ë¡œ echoë¥¼ ë¶™ì—¬ì„œ ì¬ ì „ì†¡í•œë‹¤.
         await websocket.send(data);
 
-# À¥ ¼ÒÄÏ ¼­¹ö »ı¼º.È£½ºÆ®´Â localhost¿¡ port´Â 3000·Î »ı¼ºÇÑ´Ù.
+# ì›¹ ì†Œì¼“ ì„œë²„ ìƒì„±.í˜¸ìŠ¤íŠ¸ëŠ” localhostì— portëŠ” 3000ë¡œ ìƒì„±í•œë‹¤.
 start_server = websockets.serve(accept, "localhost", 3000);
 
-# ºñµ¿±â·Î ¼­¹ö¸¦ ´ë±âÇÑ´Ù.
+# ë¹„ë™ê¸°ë¡œ ì„œë²„ë¥¼ ëŒ€ê¸°í•œë‹¤.
 asyncio.get_event_loop().run_until_complete(start_server);
 asyncio.get_event_loop().run_forever();
