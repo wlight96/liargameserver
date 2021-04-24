@@ -5,7 +5,7 @@ serverPort = 3000
 # server socket (제어 소캣)
 serverSocket = socket(AF_INET,SOCK_STREAM)
 # server socket 서버 주소와 port 번호 바인딩
-serverSocket.bind(('52.78.106.57',serverPort)) 
+serverSocket.bind(('',serverPort)) 
 
 # 연결 가능한 소캣 수 1개.
 serverSocket.listen(1)
