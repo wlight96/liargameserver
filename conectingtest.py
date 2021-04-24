@@ -4,6 +4,7 @@ import websockets;
 # 클라이언트 접속이 되면 호출된다.
 
 async def accept(websocket, path):
+    print("conecting...")
     while True:
         # 클라이언트로부터 메시지를 대기한다.
         data = await websocket.recv();
