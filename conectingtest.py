@@ -17,7 +17,7 @@ async def accept(websocket, path):
         await websocket.send(data);
 
 # 웹 소켓 서버 생성.호스트는 3.35.24.169에 port는 3000로 생성한다.
-start_server = websockets.serve(accept, "3.35.24.169", 3000);
+start_server = websockets.serve(accept, "0.0.0.0", 3000);
 
 # 비동기로 서버를 대기한다.
 asyncio.get_event_loop().run_until_complete(start_server);
