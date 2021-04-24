@@ -1,17 +1,17 @@
 from socket import *
-serverName = '***.**.**'
-serverPort = 12000
-#client socket »ı¼º
+serverName = '52.78.106.57'
+serverPort = 3000
+#client socket ìƒì„±
 clientSocket = socket(AF_INET, SOCK_STREAM)
-# server socket¿¡ ¿¬°á ¿äÃ»
+# server socketì— ì—°ê²° ìš”ì²­
 clientSocket.connect((serverName,serverPort))
 
 sentence = input ('Input lowercase sentence:')
-# ÀÔ·Â¹ŞÀº msg¸¦ byte typeÀ¸·Î º¯È¯ ÈÄ datasocketÀ¸·Î Àü¼Û
+# ì…ë ¥ë°›ì€ msgë¥¼ byte typeìœ¼ë¡œ ë³€í™˜ í›„ datasocketìœ¼ë¡œ ì „ì†¡
 clientSocket.send(sentence.encode())
-# ´ë¹®ÀÚ·Î º¯ÇüµÈ msg¸¦ recv API·Î ¹Ş¾Æ¿È.
+# ëŒ€ë¬¸ìë¡œ ë³€í˜•ëœ msgë¥¼ recv APIë¡œ ë°›ì•„ì˜´.
 modifiedSentence = clientSocket.recv(1024)
 
 print ('From Server: ', modifiedSentence.decode())
-# »ç¿ëÇÑ client socket ´İ±â.
+# ì‚¬ìš©í•œ client socket ë‹«ê¸°.
 clientSocket.close()
