@@ -17,8 +17,9 @@ ok = 1
 while ok != 0:
     # data소캣으로 부터 client가 보낸 msg를 recv API로 받는다.
     data = connectionSocket.recv(1024)
-    data = data.decode("utf-8")
-    datasql = data.split(",")
+    Ddata = data.decode("utf-8")
+    datasql = Ddata.split(",")
+
     ok = int(datasql[0])
     sentence = datasql[1]
     #json 형식
@@ -27,7 +28,7 @@ while ok != 0:
     #sentence = json_data["sentence"]
     
     # 대문자로 받은 문자열 변형
-    capitalizedSentence = sentence.upper() 
+    capitalizedSentence = data.upper() 
     # send API를 통해 clientsocket으로 전송
     connectionSocket.send(capitalizedSentence)
 

@@ -12,7 +12,7 @@ while ok != 0:
     ok = input('오케이값 : ')
     sentence = input ('Input lowercase sentence:')
     
-    data = str(ok) + , + sentence
+    data = str(ok) + ',' + sentence
     j_item ={
         "ok" : int(ok),
         "Bdate" : json.dumps(ok),
