@@ -1,3 +1,4 @@
+import json
 # socket lib 사용
 from socket import *
 # socket port 번호
@@ -8,17 +9,22 @@ serverSocket = socket(AF_INET,SOCK_STREAM)
 serverSocket.bind(('',serverPort)) 
 
 # 연결 가능한 소캣 수 1개.
-serverSocket.listen(1)
+serverSocket.listen(4)
 print ('The server is ready to receive')
-
-while 1:
-    # 제어 소캣에 연결이 확인 되면 data 소캣을 할당한다.
-    connectionSocket, addr = serverSocket.accept()
+# 제어 소캣에 연결이 확인 되면 data 소캣을 할당한다.
+connectionSocket, addr = serverSocket.accept()
+ok = 1
+while ok != 0:
     # data소캣으로 부터 client가 보낸 msg를 recv API로 받는다.
-    sentence = connectionSocket.recv(1024)
+    data = connectionSocket.recv(1024)
+    json_data = json.loads(data.decode("utf-8")) 
+    ok = json_data["ok"]
+    sentence = json_data["sentence"]
     # 대문자로 받은 문자열 변형
     capitalizedSentence = sentence.upper() 
     # send API를 통해 clientsocket으로 전송
     connectionSocket.send(capitalizedSentence)
-    # data socket을 닫아준다.
-    connectionSocket.close()
+
+
+# data socket을 닫아준다.
+connectionSocket.close()
