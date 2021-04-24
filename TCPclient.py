@@ -1,6 +1,6 @@
 from socket import *
 import json
-serverName = '3.35.24.169'
+serverName = '54.180.113.181'
 serverPort = 3000
 #client socket 생성
 clientSocket = socket(AF_INET, SOCK_STREAM)
@@ -15,10 +15,12 @@ while ok != 0:
     data = str(ok) + ',' + sentence
     j_item ={
         "ok" : int(ok),
-        "Bdate" : json.dumps(ok),
+        "sentence" : sentence,
         }
+    data = json.dumps(j_item)
     # 입력받은 msg를 byte type으로 변환 후 datasocket으로 전송
     clientSocket.send(data.encode())
+    
     # 대문자로 변형된 msg를 recv API로 받아옴.
     modifiedSentence = clientSocket.recv(1024)
     print ('From Server: ', modifiedSentence.decode())
