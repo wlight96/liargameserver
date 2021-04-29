@@ -17,8 +17,8 @@ def connect():
     jsonsentence = connectionSocket.recv(1024)
     
 def liargame():
+    return 0
 
-players = list()
 while 1:
     # 제어 소캣에 연결이 확인 되면 data 소캣을 할당한다.
     connectionSocket, addr = serverSocket.accept()
@@ -38,13 +38,13 @@ while 1:
         continue
 
     # 채팅 주고 받기
-    elif state == "chat"
+    elif state == "chat":
         if players in json_data["nick"]:
             nickName = json.loads(json_data["nick"])
             chat_json ={
                 nickName : ""
             }
-        chat = 
+        chat
     # 대문자로 받은 문자열 변형
     capitalizedSentence = sentence.upper() 
     
