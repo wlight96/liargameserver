@@ -19,7 +19,7 @@ ok = 1
 while ok != 0:
     # data소캣으로 부터 client가 보낸 msg를 recv API로 받는다.
     data = connectionSocket.recv(1024)
-
+    data = data.decode()
     json_data = json.loads(data.decode("utf-8")) 
     ok = json_data["ok"]
     if ok == 0:
