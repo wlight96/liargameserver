@@ -18,7 +18,7 @@ while ok != 0:
     
     j_item ={
         "ok" : int(ok),
-        "sentence" : sentence,
+        "sentence" : sentence
         }
     data = json.dumps(j_item)
 
