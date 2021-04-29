@@ -27,6 +27,6 @@ while ok != 0:
 
     # 대문자로 변형된 msg를 recv API로 받아옴.
     rdata = clientSocket.recv(1024)
-    json_data = json.loads(rdata.decode("utf-8")) 
+    json_data = json.loads(rdata.decode()) 
     modifiedSentence = json_data["sentence"]
-    print ('From Server: ', modifiedSentence.decode())
+    print ('From Server: ', modifiedSentence.decode("utf-8"))

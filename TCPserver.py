@@ -22,14 +22,19 @@ while ok != 0:
     data = data.decode()
     json_data = json.loads(data) 
     ok = json_data["ok"]
+    
     if ok == 0:
         # data socket을 닫아준다.
         connectionSocket.close()
         break
     sentence = json_data["sentence"]
+    print(sentencce)
     # 대문자로 받은 문자열 변형
     #capitalizedSentence = data.upper() 
     capitalizedSentence = sentence.upper()
+    send_data = {
+        "sentence" : capitalizedSentence
+    }
     # send API를 통해 clientsocket으로 전송
     #connectionSocket.send(bytes(capitalizedSentence,encoding="utf-8"))
-    connectionSocket.send(json.dumps(data.decode("utf-8")).encode("utf-8"))
+    connectionSocket.send(json.dumps(send_data).encode())
