@@ -31,4 +31,5 @@ while ok != 0:
     #capitalizedSentence = data.upper() 
     capitalizedSentence = sentence.upper()
     # send API를 통해 clientsocket으로 전송
-    connectionSocket.send(bytes(capitalizedSentence,encoding="utf-8"))
+    #connectionSocket.send(bytes(capitalizedSentence,encoding="utf-8"))
+    connectionSocket.send(json.dumps(data.decode("utf-8")).encode("utf-8"))

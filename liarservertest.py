@@ -1,38 +1,57 @@
 import json
-# socket lib »ç¿ë
+# socket lib ì‚¬ìš©
 from socket import *
-
-# socket port ¹øÈ£
+# socket port ë²ˆí˜¸
 serverPort = 3000
-# server socket (Á¦¾î ¼ÒÄ¹)
+# server socket (ì œì–´ ì†Œìº£)
 serverSocket = socket(AF_INET,SOCK_STREAM)
-# server socket ¼­¹ö ÁÖ¼Ò¿Í port ¹øÈ£ ¹ÙÀÎµù
+# server socket ì„œë²„ ì£¼ì†Œì™€ port ë²ˆí˜¸ ë°”ì¸ë”©
 serverSocket.bind(('',serverPort)) 
-# ¿¬°á °¡´ÉÇÑ ¼ÒÄ¹ ¼ö 4°³.
+
+# ì—°ê²° ê°€ëŠ¥í•œ ì†Œìº£ ìˆ˜ 4ê°œ.
 serverSocket.listen(4)
 print ('The server is ready to receive')
 
+def connect():
+    connectionSocket, addr = serverSocket.accept()
+    jsonsentence = connectionSocket.recv(1024)
+    
+def liargame():
+
+players = list()
 while 1:
-    # Á¦¾î ¼ÒÄ¹¿¡ ¿¬°áÀÌ È®ÀÎ µÇ¸é data ¼ÒÄ¹À» ÇÒ´çÇÑ´Ù.
+    # ì œì–´ ì†Œìº£ì— ì—°ê²°ì´ í™•ì¸ ë˜ë©´ data ì†Œìº£ì„ í• ë‹¹í•œë‹¤.
     connectionSocket, addr = serverSocket.accept()
 
-    # data¼ÒÄ¹À¸·Î ºÎÅÍ client°¡ º¸³½ msg¸¦ recv API·Î ¹Ş´Â´Ù.
-    jsonsentence = connectionSocket.recv(1024)
-
-    json_data = json.loads(jsonsentence)
+    # dataì†Œìº£ìœ¼ë¡œ ë¶€í„° clientê°€ ë³´ë‚¸ msgë¥¼ recv APIë¡œ ë°›ëŠ”ë‹¤.
+    data = connectionSocket.recv(1024)
+    json_data = json.loads(data.decode("utf-8"))
     state = json_data["state"]
-    # Ã³À½ ¿¬°á
+    # ì²˜ìŒ ì—°ê²°
     if state == "enter" :
         playername = json_data["player"]
-    # Ã¤ÆÃ ÁÖ°í ¹Ş±â
+        player_json = {
+            "state": "enter",
+            "plyer":players
+        }
+        connectionSocket.send(bytes(player_json,encoding="utf-8"))
+        continue
+
+    # ì±„íŒ… ì£¼ê³  ë°›ê¸°
     elif state == "chat"
+        if players in json_data["nick"]:
+            nickName = json.loads(json_data["nick"])
+            chat_json ={
+                nickName : ""
+            }
         chat = 
-    # ´ë¹®ÀÚ·Î ¹ŞÀº ¹®ÀÚ¿­ º¯Çü
+    # ëŒ€ë¬¸ìë¡œ ë°›ì€ ë¬¸ìì—´ ë³€í˜•
     capitalizedSentence = sentence.upper() 
-    # send API¸¦ ÅëÇØ clientsocketÀ¸·Î Àü¼Û
+    
+    # send APIë¥¼ í†µí•´ clientsocketìœ¼ë¡œ ì „ì†¡
     connectionSocket.send(capitalizedSentence)
     
     
-    # °ÔÀÓ Á¾·á
-    # data socketÀ» ´İ¾ÆÁØ´Ù.
+    # ê²Œì„ ì¢…ë£Œ
+    # data socketì„ ë‹«ì•„ì¤€ë‹¤.
     connectionSocket.close()
