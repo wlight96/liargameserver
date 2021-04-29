@@ -22,13 +22,12 @@ while ok != 0:
     data = data.decode()
     json_data = json.loads(data) 
     ok = json_data["ok"]
-    
     if ok == 0:
         # data socket을 닫아준다.
         connectionSocket.close()
         break
-    print(sentencce)
     sentence = json_data["sentence"]
+    print(sentence)
     # 대문자로 받은 문자열 변형
     #capitalizedSentence = data.upper() 
     capitalizedSentence = sentence.upper()
