@@ -39,4 +39,4 @@ def handlechating(json):
 
 if __name__ == '__main__': 
     #socketio.run(app)
-    socketio.run(app, host = "54.180.113.181", port=5000)
+    socketio.run(app, host = "localhost", port=5000)
