@@ -20,7 +20,6 @@ while ok != 0:
     data = connectionSocket.recv(1024)
     decode_data = data.decode()
     json_data = json.loads(decode_data.encode("utf-8")) 
-    
     ok = int(json_data["ok"])
     if ok == 0:
         # data socket을 닫아준다.

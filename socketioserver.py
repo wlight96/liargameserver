@@ -13,8 +13,8 @@ def handlechating(json):
     socketio.emit('chat',{
         state: 'chat',
         name: json.dumps("문상혁 바보",ensure_ascii=false),
-        text: data.get("name")
-    },broadcast = True)
+        text: data.get("text")
+        },broadcast = True)
 
 #@app.before_request 
 #def before_request(): 
