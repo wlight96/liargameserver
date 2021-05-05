@@ -1,7 +1,9 @@
 import os 
 import json
-from flask import Flask 
-from flask_socketio import SocketIO, emit
+from flask import Flask, render_template
+from flask_socketio import SocketIO
+from flask_socketio import send, emit
+
 app = Flask(__name__) 
 app.secret_key = "secret" 
 socketio = SocketIO(app) 
@@ -39,4 +41,4 @@ def handlechating(json):
 
 if __name__ == '__main__': 
     #socketio.run(app)
-    socketio.run(app, port=5000)
+    socketio.run(app,host='', port=5000)
